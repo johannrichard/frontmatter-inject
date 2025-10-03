@@ -79,9 +79,9 @@ Comma-separated list of permitted keys (e.g., `author,status,tags,date,category,
 
 ## Installation
 
-### From Obsidian Community Plugins
+### From Obsidian Community Plugins (Once added)
 1. Open Settings → Community plugins
-2. Search for „Frontmatter Inject“
+2. Search for „Frontmatter inject“
 3. Click Install, then Enable
 
 ### Using BRAT (Beta Reviewers Auto-update Tester)
