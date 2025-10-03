@@ -1,6 +1,15 @@
 # Frontmatter Inject
 
-Add frontmatter to your notes via URI links. Perfect for automation and external integrations.
+## TL;DR:
+Add frontmatter to your notes via URI links. Perfect for automation and external integrations. You can use it e.g. to add a `location` property to a note based on an [iOS Shortcut like this](https://www.icloud.com/shortcuts/bfea385338c64c2e9b55a683f2495897):
+
+<img width="862" height="512" alt="image" src="https://github.com/user-attachments/assets/fbaf80f7-ffee-4c72-a97a-f3b046e90b04" />
+
+You can then use a plugin of your choice to add a command like the following which will open the Shortcut above, grabs the location, and returns to Obsidian to add the location as a new / updated property:
+
+```
+shortcuts://run-shortcut?name=Add%20Frontmatter%20Location
+```
 
 ## Features
 
