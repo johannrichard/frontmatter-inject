@@ -1,5 +1,5 @@
 /**
- * FrontmatterUtils.ts
+ * frontmatter-utils.ts
  */
 
 import type { YamlEscapeOptions, YamlStringState } from 'src/types';
