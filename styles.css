@@ -1,8 +1,17 @@
 /*
-
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
+Styles for the Frontmatter Inject plugin
 */
+
+.frontmatter-inject-docs {
+	padding: 10px 0;
+	margin-bottom: 20px;
+}
+
+.frontmatter-inject-docs a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+.frontmatter-inject-docs a:hover {
+	text-decoration: underline;
+}

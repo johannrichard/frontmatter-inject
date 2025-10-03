@@ -119,6 +119,20 @@ class FrontmatterInjectSettingTab extends PluginSettingTab {
 
     containerEl.empty();
 
+    containerEl.createEl('h2', { text: 'Frontmatter inject settings' });
+
+    containerEl.createEl('p', {
+      text: "This plugin allows you to inject frontmatter into your notes via URI commands. Perfect for automation and quick updates to your notes' metadata.",
+    });
+
+    const linkDiv = containerEl.createEl('div', { cls: 'frontmatter-inject-docs' });
+    linkDiv.createEl('a', {
+      text: 'View documentation on GitHub',
+      href: 'https://github.com/johannrichard/frontmatter-inject#readme',
+    });
+    linkDiv.createEl('br');
+    linkDiv.createEl('br');
+
     new Setting(containerEl)
       .setName('Allow all keys')
       .setDesc(
