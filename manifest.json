@@ -1,10 +1,10 @@
 {
-    "id": "frontmatter-inject",
-    "name": "Frontmatter Inject",
-    "version": "1.0.0",
-    "minAppVersion": "0.15.0",
-    "description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
-    "author": "johannrichard",
-    "authorUrl": "https://github.com/johannrichard",
-    "isDesktopOnly": false
+	"id": "frontmatter-inject",
+	"name": "Frontmatter inject",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
+	"author": "johannrichard",
+	"authorUrl": "https://github.com/johannrichard",
+	"isDesktopOnly": false
 }
