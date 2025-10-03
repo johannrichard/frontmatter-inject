@@ -108,10 +108,4 @@ For security, the plugin sanitizes all input:
 
 Found a bug or have a feature request? [Open an issue on GitHub](https://github.com/johannrichard/frontmatter-inject/issues).
 
-## License
-
-MIT
-
-—
-
 Made with ☕ by [johannrichard](https://github.com/johannrichard)
