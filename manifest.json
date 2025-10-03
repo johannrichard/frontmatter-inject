@@ -1,7 +1,7 @@
 {
     "id": "frontmatter-inject",
     "name": "Frontmatter inject",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0-beta.3",
     "minAppVersion": "0.15.0",
     "description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
     "author": "johannrichard",
