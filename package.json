@@ -1,15 +1,24 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "frontmatter-inject",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"obsidian",
+		"obsidian-plugin",
+		"frontmatter",
+		"metadata",
+		"uri",
+		"automation",
+		"integration",
+		"shortcuts"
+	],
+	"author": "johannrichard",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
