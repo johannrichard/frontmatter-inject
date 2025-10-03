@@ -1,6 +1,6 @@
 {
     "name": "frontmatter-inject",
-    "version": "1.0.0-beta.3",
+    "version": "1.0.0",
     "description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
     "main": "main.js",
     "scripts": {
