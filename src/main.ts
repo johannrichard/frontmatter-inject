@@ -1,4 +1,5 @@
 import { type App, Notice, Plugin, PluginSettingTab, Setting, type TFile } from 'obsidian';
+import { escapeProperty } from './helper/frontmatter-utils';
 
 interface FrontmatterInjectSettings {
   allowedKeys: string;
@@ -69,9 +70,9 @@ export default class FrontmatterInjectPlugin extends Plugin {
   sanitizeValue(value: string): string {
     // Decode URI component and trim
     try {
-      return decodeURIComponent(value).trim();
+      return escapeProperty(decodeURIComponent(value).trim());
     } catch (e) {
-      console.error('Error decoding value:', e);
+      console.error('Error decoding and sanitizing value:', e);
       return value.trim();
     }
   }
