@@ -37,4 +37,4 @@ jobs:
       - name: Release update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release -p semantic-release-obsidian-plugin
+        run: npx semantic-release
