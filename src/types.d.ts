@@ -6,4 +6,5 @@ export interface YamlStringState {
 
 export interface YamlEscapeOptions {
   multiline?: boolean;
+  quoteStrings?: boolean;
 }

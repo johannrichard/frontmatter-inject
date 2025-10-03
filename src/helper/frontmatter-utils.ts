@@ -49,7 +49,7 @@ function formatMultilineString(value: string): string {
  * @param value - Value to escape
  * @param options - Escape options
  */
-function escapeValue(value: string, { multiline = false }: YamlEscapeOptions = {}): string {
+function escapeValue(value: string, { multiline = false, quoteStrings = false }: YamlEscapeOptions = {}): string {
   if (!value) return '""';
   if (analyzeString(value).isValueEscapedAlready) return value;
 
@@ -58,7 +58,7 @@ function escapeValue(value: string, { multiline = false }: YamlEscapeOptions = {
   }
 
   const cleanValue = normalizeString(value);
-  return quoteString(cleanValue);
+  return quoteStrings ? quoteString(cleanValue) : cleanValue;
 }
 
 /**
@@ -89,11 +89,11 @@ function quoteString(value: string): string {
   return `"${value.replace(/"/g, '\\"')}"`;
 }
 
-export function escapeProperty(value: string): string {
-  const escapeStringValue = (str: string) => escapeValue(str);
+export function escapeProperty(value: string, quoteStrings = false): string {
+  const escapeStringValue = (str: string) => escapeValue(str, { quoteStrings });
   let processedProperty: unknown;
   if (Array.isArray(value)) {
-    (processedProperty as unknown) = value.map((item) => (typeof item === 'string' ? escapeStringValue(item) : item));
+    (processedProperty as unknown) = value.map((item) => (typeof item === 'string' ? escapeValue(item) : item));
   } else if (typeof value === 'string') {
     (processedProperty as unknown) = escapeStringValue(value);
   }
