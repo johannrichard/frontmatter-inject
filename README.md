@@ -1,94 +1,108 @@
-# Obsidian Sample Plugin
+# Frontmatter Inject
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+Add frontmatter to your notes via URI links. Perfect for automation and external integrations.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **URI-based frontmatter injection**: Add metadata to notes through simple URI calls
+- **Security controls**: Define which frontmatter keys are allowed
+- **Flexible configuration**: Allow all keys or restrict to a specific whitelist
+- **External integration**: Perfect for iOS Shortcuts, Alfred workflows, Raycast scripts, and other automation tools
 
-## First time developing plugins?
+## Usage
 
-Quick starting guide for new plugin devs:
+Call the plugin using the `obsidian://` URI scheme:
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
-
-## Releasing new releases
-
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
-
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
-
-## Adding your plugin to the community plugin list
-
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
-
-## How to use
-
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
-
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint ./src/`
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+```
+obsidian://frontmatter-inject?key=author&value=John%20Doe
+obsidian://frontmatter-inject?key=status&value=draft
+obsidian://frontmatter-inject?key=tags&value=important
 ```
 
-If you have multiple URLs, you can also do:
+The plugin will add or update the specified frontmatter key in the currently active note.
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+### Parameters
+
+- `key`: The frontmatter key to add (required)
+- `value`: The value to set (required, URL-encoded)
+
+### Example integrations
+
+**iOS Shortcuts (Geolocation):**
+
+Create a shortcut that captures your current location and adds it to your active note:
+
+1. Add „Get Current Location“ action
+2. Add „Open URL“ action with:
+```
+obsidian://frontmatter-inject?key=location&value=[Latitude],[Longitude]
 ```
 
-## API Documentation
+This will add frontmatter like:
+```yaml
+—
+location: 47.3769,8.5417
+—
+```
 
-See https://github.com/obsidianmd/obsidian-api
+**iOS Shortcuts (Simple):**
+```
+Open URL: obsidian://frontmatter-inject?key=created&value=2024-10-03
+```
+
+**Alfred Workflow:**
+```bash
+open „obsidian://frontmatter-inject?key=status&value=in-progress“
+```
+
+**Raycast Script:**
+```javascript
+open(„obsidian://frontmatter-inject?key=author&value=John%20Doe“);
+```
+
+## Settings
+
+### Allow all keys
+Toggle to permit any frontmatter key via URI. When disabled, only keys from the allowed list are accepted.
+
+### Allowed frontmatter keys
+Comma-separated list of permitted keys (e.g., `author,status,tags,date,category,location`). Only applies when „Allow all keys“ is disabled.
+
+## Installation
+
+### From Obsidian Community Plugins
+1. Open Settings → Community plugins
+2. Search for „Frontmatter Inject“
+3. Click Install, then Enable
+
+### Using BRAT (Beta Reviewers Auto-update Tester)
+1. Install the [BRAT plugin](https://github.com/TfTHacker/obsidian42-brat)
+2. Open BRAT settings
+3. Click „Add Beta plugin“
+4. Enter: `johannrichard/obsidian-frontmatter-inject`
+5. Enable the plugin in Settings → Community plugins
+
+### Manual Installation
+1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release
+2. Create a folder `frontmatter-inject` in your vault’s `.obsidian/plugins/` directory
+3. Copy the files into the folder
+4. Reload Obsidian and enable the plugin in Settings
+
+## Security
+
+For security, the plugin sanitizes all input:
+- Keys are restricted to alphanumeric characters, hyphens, and underscores
+- Values are URL-decoded and trimmed
+- Only allowed keys (per settings) can be added
+
+## Support
+
+Found a bug or have a feature request? [Open an issue on GitHub](https://github.com/johannrichard/frontmatter-inject/issues).
+
+## License
+
+MIT
+
+—
+
+Made with ☕ by [johannrichard](https://github.com/johannrichard)

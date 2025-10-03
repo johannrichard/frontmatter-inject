@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+    "id": "frontmatter-inject",
+    "name": "Frontmatter inject",
+    "version": "1.0.0-beta.3",
+    "minAppVersion": "0.15.0",
+    "description": "Add frontmatter to notes via URI links. Perfect for automation and external integrations.",
+    "author": "johannrichard",
+    "authorUrl": "https://github.com/johannrichard",
+    "isDesktopOnly": false
 }
