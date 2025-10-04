@@ -1,6 +1,7 @@
 # Frontmatter Inject
 
-## TL;DR:
+## TL;DR
+
 Add frontmatter to your notes via URI links. Perfect for automation and external integrations. You can use it e.g. to add a `location` property to a note based on an [iOS Shortcut like this](https://www.icloud.com/shortcuts/bfea385338c64c2e9b55a683f2495897):
 
 <img width="862" height="512" alt="image" src="https://github.com/user-attachments/assets/fbaf80f7-ffee-4c72-a97a-f3b046e90b04" />
@@ -43,48 +44,57 @@ Create a shortcut that captures your current location and adds it to your active
 
 1. Add „Get Current Location“ action
 2. Add „Open URL“ action with:
+
 ```
 obsidian://frontmatter-inject?key=location&value=[Latitude],[Longitude]
 ```
 
 This will add frontmatter like:
+
 ```yaml
-—
+--
 location: 47.3769,8.5417
-—
+--
 ```
 
 **iOS Shortcuts (Simple):**
+
 ```
 Open URL: obsidian://frontmatter-inject?key=created&value=2024-10-03
 ```
 
 **Alfred Workflow:**
+
 ```bash
-open „obsidian://frontmatter-inject?key=status&value=in-progress“
+open "obsidian://frontmatter-inject?key=status&value=in-progress"
 ```
 
 **Raycast Script:**
+
 ```javascript
-open(„obsidian://frontmatter-inject?key=author&value=John%20Doe“);
+open("obsidian://frontmatter-inject?key=author&value=John%20Doe");
 ```
 
 ## Settings
 
 ### Allow all keys
+
 Toggle to permit any frontmatter key via URI. When disabled, only keys from the allowed list are accepted.
 
 ### Allowed frontmatter keys
+
 Comma-separated list of permitted keys (e.g., `author,status,tags,date,category,location`). Only applies when „Allow all keys“ is disabled.
 
 ## Installation
 
 ### From Obsidian Community Plugins (Once added)
+
 1. Open Settings → Community plugins
 2. Search for „Frontmatter inject“
 3. Click Install, then Enable
 
 ### Using BRAT (Beta Reviewers Auto-update Tester)
+
 1. Install the [BRAT plugin](https://github.com/TfTHacker/obsidian42-brat)
 2. Open BRAT settings
 3. Click „Add Beta plugin“
@@ -92,6 +102,7 @@ Comma-separated list of permitted keys (e.g., `author,status,tags,date,category,
 5. Enable the plugin in Settings → Community plugins
 
 ### Manual Installation
+
 1. Download `main.js`, `manifest.json`, and `styles.css` from the latest release
 2. Create a folder `frontmatter-inject` in your vault’s `.obsidian/plugins/` directory
 3. Copy the files into the folder
@@ -100,6 +111,7 @@ Comma-separated list of permitted keys (e.g., `author,status,tags,date,category,
 ## Security
 
 For security, the plugin sanitizes all input:
+
 - Keys are restricted to alphanumeric characters, hyphens, and underscores
 - Values are URL-decoded and trimmed
 - Only allowed keys (per settings) can be added

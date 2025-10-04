@@ -89,11 +89,11 @@ function quoteString(value: string): string {
   return `"${value.replace(/"/g, '\\"')}"`;
 }
 
-export function escapeProperty(value: string, quoteStrings = false): string {
+export function escapeProperty(value: string | string[], quoteStrings = false): string {
   const escapeStringValue = (str: string) => escapeValue(str, { quoteStrings });
-  let processedProperty: unknown;
+  let processedProperty: unknown = value;
   if (Array.isArray(value)) {
-    (processedProperty as unknown) = value.map((item) => (typeof item === 'string' ? escapeValue(item) : item));
+    (processedProperty as unknown) = value.map((item) => (typeof item === 'string' ? escapeStringValue(item) : item));
   } else if (typeof value === 'string') {
     (processedProperty as unknown) = escapeStringValue(value);
   }

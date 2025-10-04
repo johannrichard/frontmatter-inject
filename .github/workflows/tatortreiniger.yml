@@ -3,11 +3,11 @@ name: Tatortreiniger
 
 on:
   release:
-    types: [published, released]
+    types: [published]
   workflow_dispatch:
 
 # This workflow runs when a new release is published.
-# It deletes old pre-release versions, keeping at least 10.
+# It deletes old pre-release versions, keeping at least 9.
 jobs:
   tatort-reinigen:
     runs-on: ubuntu-latest

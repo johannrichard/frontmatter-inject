@@ -18,7 +18,7 @@ plugins:
             - path: build/manifest.json
             - path: build/styles.css
     # Uncomment the following block if semantic release *should* commit the
-    # updated `manifest.json`, `versions.json` and `package.json` files with the new version number.
+    # updated `manifest.json`, and `package.json` files with the new version number.
     - - "@semantic-release/git"
       - assets:
             - manifest.json
